@@ -1,0 +1,44 @@
+{% extends "base_table.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Movil</th>
+        <th>IP</th>
+        <th>MAC</th>
+        <th>Device</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.movil }}</td>
+          <td>{{ user.ip }}</td>
+          <td>{{ user.mac }}</td>
+          <td>{{ user.device }}</td>
+          <td>{{ user._date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+  $(document).ready(function() {
+      $('#data').DataTable({
+          dom: 'Bfrtip',
+          buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+          "order": [[ 7, "desc" ]]
+      });
+    });
+  </script>
+{% endblock %}
